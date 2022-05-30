@@ -4,9 +4,10 @@ exports.middlewareGlobal = (req, res, next)=>{
 }
 
 exports.checkCSRFError = (erro, req, res, next)=>{
-    if(erro && erro.code === 'EBADCSRFTOKEN'){
+    if(erro){
         return res.send('ERRO')
     }
+    next()
 }
 
 exports.CSRFMiddleware = (req, res, next)=> {
