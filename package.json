@@ -25,7 +25,8 @@
     "mongoose": "^6.3.4",
     "regenerator-runtime": "^0.13.7",
     "session": "^0.1.0",
-    "style-loader": "^2.0.0"
+    "style-loader": "^2.0.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
