@@ -3,7 +3,11 @@ const express = require('express')
 const app = express()
 // MODELAR A BASE DE DADOS E PRESERVAR OS DADOS (SCHEMA)
 const mongoose = require('mongoose')
-mongoose.connect(process.env.CONNECTIONSTRING).then(()=>{
+mongoose.connect(process.env.CONNECTIONSTRING, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+}).then(()=>{
     app.emit('pronto') // EMITE UM EVENTO ('PRONTO')
 }). catch(e => console.log(e))
 const session = require('express-session') 
@@ -11,12 +15,12 @@ const MongoStore = require('connect-mongo') // AS SESSÕES SERÃO SALVAS NA BASE
 const flash = require('connect-flash') // FLASH MESSAGES (MSGS AUTODRESTUTIVAS)
 const routes = require('./routes') // ROTAS DA APLICAÇÃO
 const path = require('path')
-const helmet = require('helmet')
+//const helmet = require('helmet')
 const csrf = require('csurf')
 const {middlewareGlobal, checkCSRFError, CSRFMiddleware} = require('./src/middlewares/middlewares') // FUNÇÕES QUE SÃO EXECUTADAS NA ROTA (PODE EXECUTAR NO MEIO DO CAMINHO)
 const { cookie } = require('express/lib/response')
 
-app.use(helmet())
+//app.use(helmet())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('./public')) // PEGA ARQUIVOS ESTÁTICOS
